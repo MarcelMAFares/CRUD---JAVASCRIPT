@@ -28,7 +28,6 @@ function editVisitName() {
 
 }
 
-
 function ApagaRegistro(id) {
   Swal.fire({
   title: 'Are you sure?',
@@ -161,7 +160,6 @@ $(function() {
       timer: 1500
     })
   }
-
 
   $("#modalRegistro").modal("hide")
 
