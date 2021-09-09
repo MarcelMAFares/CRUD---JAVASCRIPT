@@ -111,6 +111,12 @@ $(function() {
   
   
   if(!_id || _id == "0"){
+    if(!Name || !CPF || !Birth || !Phone){
+      Swal.fire('All fields are required')
+      if(ok){
+        $("#modalRegistro").modal("show")
+      }
+    }else{
     let registro = {}
     registro.Name = Name
     registro.CPF = CPF
@@ -119,25 +125,43 @@ $(function() {
 
     registro.ID = dados.length + 1
     dados.push(registro)
-  }
-  else{
-    dados.forEach(function(item) {
-      if(item.ID == _id){
-        item.Name = Name
-        item.CPF = CPF
-        item.Birth = Birth
-        item.Phone = Phone
-      }
-    })
-  }
 
-  Swal.fire({
+    Swal.fire({
     position: 'top-end',
     icon: 'success',
     title: 'Registration successfully',
     showConfirmButton: false,
     timer: 1500
   })
+    }
+
+  }
+  else{
+    dados.forEach(function(item) {
+      if(item.ID == _id){
+        if(!Name || !CPF || !Birth || !Phone){
+          Swal.fire('All fields are required')
+          if(ok){
+            $("#modalRegistro").modal("show")
+          }
+        }else{
+          item.Name = Name
+          item.CPF = CPF
+          item.Birth = Birth
+          item.Phone = Phone
+        }
+
+      }
+    })
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Update successfully',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
 
   $("#modalRegistro").modal("hide")
 
